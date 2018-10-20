@@ -15,11 +15,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 
 import org.joda.time.DateTime;
 
@@ -153,26 +158,13 @@ public class LogActivity extends AppCompatActivity {
         LineGraphSeries<DataPoint> plannedSeries = new LineGraphSeries<DataPoint>(plannedPoints);
         LineGraphSeries<DataPoint> actualSeries = new LineGraphSeries<DataPoint>(actualPoints);
 
-        //graph settings
+        //set plannedSeries
         plannedSeries.setColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
         plannedSeries.setDrawDataPoints(true);
         plannedSeries.setDataPointsRadius(10);
-        actualSeries.setDrawDataPoints(true);
-        actualSeries.setDataPointsRadius(10);
+        plannedSeries.setTitle("Plan");
 
-        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
-
-        graph.getGridLabelRenderer().setHumanRounding(false);
-
-        // enable scaling and scrolling
-        graph.getViewport().setScalable(true);
-        graph.getViewport().setScalableY(true);
-
-        graph.getViewport().setMinX(logEntryList.get(0).getStartTime());
-        graph.getViewport().setMaxX(logEntryList.get(2).getStartTime());
-        graph.getViewport().setXAxisBoundsManual(true);
-
+        //set actualSeries
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(10);
@@ -180,7 +172,49 @@ public class LogActivity extends AppCompatActivity {
         paint.setColor(ResourcesCompat.getColor(getResources(), R.color.colorAccent, null));
         actualSeries.setDrawAsPath(true);
         actualSeries.setCustomPaint(paint);
+        actualSeries.setDrawDataPoints(true);
+        actualSeries.setDataPointsRadius(10);
+        actualSeries.setTitle("Actual");
 
+        // set grid label
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        graph.getGridLabelRenderer().setNumHorizontalLabels(2);
+        graph.getGridLabelRenderer().setHumanRounding(false);
+
+        // set view port
+        graph.getViewport().setScalable(true);
+        graph.getViewport().setScalableY(true);
+
+        graph.getViewport().setMinX(logEntryList.get(0).getStartTime());
+        graph.getViewport().setMaxX(logEntryList.get(3).getStartTime());
+        graph.getViewport().setXAxisBoundsManual(true);
+
+        //set legend
+        LegendRenderer legendRenderer = graph.getLegendRenderer();
+        legendRenderer.setVisible(true);
+        legendRenderer.setAlign(LegendRenderer.LegendAlign.BOTTOM);
+        legendRenderer.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorLight, null));
+
+        //set listener
+        plannedSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Toast.makeText(LogActivity.this,
+                        "Planned Weight: "+ String.format("%.2f",dataPoint.getY()) + " kg",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+        actualSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Toast.makeText(LogActivity.this,
+                        "Actual Weight: "+ String.format("%.2f",dataPoint.getY()) + " kg",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // draw series
         graph.removeAllSeries();
         graph.addSeries(plannedSeries);
         graph.addSeries(actualSeries);

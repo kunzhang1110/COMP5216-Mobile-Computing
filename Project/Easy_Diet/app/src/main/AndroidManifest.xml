@@ -18,12 +18,16 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".login.RegisterActivity" />
-        <activity android:name=".profile.UserActivity"></activity>
-        <activity android:name=".profile.CalculatorActivity"></activity>
-        <activity android:name=".log.LogActivity">
-
+        <activity android:name=".login.LoginActivity"
+            android:label="Login"/>
+        <activity android:name=".login.RegisterActivity"
+            android:label="Register"/>
+        <activity android:name=".profile.UserActivity"
+            android:label="Profile"></activity>
+        <activity android:name=".profile.CalculatorActivity"
+            android:label="Set Diet Plan"></activity>
+        <activity android:name=".log.LogActivity"
+            android:label="Set Diet Plan">
         </activity>
         <activity android:name=".food.FoodActivity" />
         <activity android:name=".food.FoodListActivity" />

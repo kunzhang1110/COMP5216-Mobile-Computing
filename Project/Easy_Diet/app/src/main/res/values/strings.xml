@@ -19,7 +19,7 @@
         <item>MALE</item>
     </string-array>
 
-    <string name="btnToCalculationText">To Calc</string>
+    <string name="btnToCalculationText">Set Your Diet Plan</string>
     <string name="tvWeightTarget">Weight Target</string>
     <string name="tvTargetDuration">Days</string>
     <string name="tvPal">Activity Level</string>
@@ -39,4 +39,5 @@
     <string name="dialog_delete_msg">delete</string>
     <string name="delete">delete!</string>
     <string name="cancel">cancel</string>
+    <string name="tvUserTargetDurationTitle">Planned Days</string>
 </resources>

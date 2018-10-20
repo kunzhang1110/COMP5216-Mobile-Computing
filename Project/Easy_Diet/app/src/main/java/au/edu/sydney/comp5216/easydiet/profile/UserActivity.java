@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import au.edu.sydney.comp5216.easydiet.food.FoodActivity;
 import au.edu.sydney.comp5216.easydiet.log.LogActivity;
 
 public class UserActivity extends AppCompatActivity {
+    public final int CALCULATE_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,10 @@ public class UserActivity extends AppCompatActivity {
         final TextView tvHeight = (TextView) findViewById(R.id.tvHeight);
         final TextView tvWeight = (TextView) findViewById(R.id.tvWeight);
         final TextView tvGender = (TextView) findViewById(R.id.tvGender);
+        final TextView tvUserWeightTarget = (TextView) findViewById(R.id.tvUserWeightTarget);
+        final TextView tvUserTargetDuration = (TextView) findViewById(R.id.tvUserTargetDuration);
+        final TextView tvUserCalories = (TextView) findViewById(R.id.tvUserCalories);
+        final TextView tvUserPlan = (TextView) findViewById(R.id.tvUserPlan);
         final Button btnToCalculation = (Button) findViewById(R.id.btnToCalculation);
         final BottomNavigationView navigationView =  (BottomNavigationView) findViewById(R.id.navigationView);
 
@@ -42,6 +48,16 @@ public class UserActivity extends AppCompatActivity {
         tvHeight.setText(String.valueOf(user.getHeight()));
         tvWeight.setText(String.valueOf(user.getWeight()));
         tvGender.setText(String.valueOf(user.getGender()));
+        tvUserWeightTarget.setText(String.valueOf(user.getTargetWeight()));
+        tvUserTargetDuration.setText(String.valueOf(user.getTargetDuration()));
+        tvUserCalories.setText(String.format("%.0f", user.getDailyCalorieTarget()));
+
+        if (user.getDietChoice() == 0){
+            tvUserPlan.setText("Protein");
+        }else{
+            tvUserPlan.setText("Keto");
+        }
+
 
 
         //set button
@@ -50,7 +66,7 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(UserActivity.this, CalculatorActivity.class);
                 intent.putExtra("user", user);
-                UserActivity.this.startActivity(intent);
+                UserActivity.this.startActivityForResult(intent, CALCULATE_REQUEST_CODE);
             }
         }); //end of BtnLogin.setOnClickListener
 
@@ -91,7 +107,28 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        Log.i("xxxHere","here"+intent.getSerializableExtra("user"));
+        if (resultCode == RESULT_OK){
 
+            User user = (User) intent.getSerializableExtra("user");
+            final TextView tvUserWeightTarget = (TextView) findViewById(R.id.tvUserWeightTarget);
+            final TextView tvUserTargetDuration = (TextView) findViewById(R.id.tvUserTargetDuration);
+            final TextView tvUserCalories = (TextView) findViewById(R.id.tvUserCalories);
+            final TextView tvUserPlan = (TextView) findViewById(R.id.tvUserPlan);
 
+            tvUserWeightTarget.setText(String.valueOf(user.getTargetWeight()));
+            tvUserTargetDuration.setText(String.valueOf(user.getTargetDuration()));
+            tvUserCalories.setText(String.format("%.0f", user.getDailyCalorieTarget()));
 
+            if (user.getDietChoice() == 0){
+                tvUserPlan.setText("Protein");
+            }else{
+                tvUserPlan.setText("Keto");
+            }
+
+        }
+
+    }
 }

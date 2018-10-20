@@ -3,9 +3,12 @@ package au.edu.sydney.comp5216.easydiet.profile;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +31,7 @@ import java.util.Random;
 
 import au.edu.sydney.comp5216.easydiet.R;
 import au.edu.sydney.comp5216.easydiet.dao.UpdateRequest;
+import au.edu.sydney.comp5216.easydiet.food.FoodActivity;
 import au.edu.sydney.comp5216.easydiet.log.LogActivity;
 import au.edu.sydney.comp5216.easydiet.log.LogEntry;
 import au.edu.sydney.comp5216.easydiet.log.LogEntryDB;
@@ -72,6 +76,7 @@ public class CalculatorActivity extends AppCompatActivity {
         tvProteinRangeHi = (TextView) findViewById(R.id.tvProteinRangeHi);
         tvFatRangeLo = (TextView) findViewById(R.id.tvFatRangeLo);
         tvFatRangeHi = (TextView) findViewById(R.id.tvFatRangeHi);
+        final BottomNavigationView navigationView =  (BottomNavigationView) findViewById(R.id.navigationView);
 
         //Setup database
         db = LogEntryDB.getDatabase(this.getApplicationContext());
@@ -137,8 +142,48 @@ public class CalculatorActivity extends AppCompatActivity {
                 saveToServer(user);
                 deleteAllFromDatabase();
                 saveToRoom(user);
+                Intent intent = new Intent();
+                intent.putExtra("user",user);
+                setResult(RESULT_OK, intent); // set result code and bundle data for response
+                Log.i("xxxHere","here"+intent.getSerializableExtra("user"));
+                finish(); // closes the activity, pass data to parent
             }
         });
+
+
+        navigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener(){
+                    Intent intent;
+
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item){
+                        switch (item.getItemId()){
+
+                            case R.id.navigation_user:
+                                intent = new Intent(CalculatorActivity.this, UserActivity.class);
+                                intent.putExtra("user", user);
+                                CalculatorActivity.this.startActivity(intent);
+                                finish();
+                                break;
+
+                            case R.id.navigation_food:
+                                intent = new Intent(CalculatorActivity.this, FoodActivity.class);
+                                intent.putExtra("user", user);
+                                CalculatorActivity.this.startActivity(intent);
+                                finish();
+                                break;
+                            case R.id.navigation_log:
+                                intent = new Intent(CalculatorActivity.this, LogActivity.class);
+                                intent.putExtra("user", user);
+                                CalculatorActivity.this.startActivity(intent);
+                                finish();
+                                break;
+                        }
+                        return true;
+                    }
+
+                }
+        );
     }
 
     public void saveToServer(User user){
