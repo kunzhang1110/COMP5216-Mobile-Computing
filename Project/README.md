@@ -34,6 +34,3 @@ to implementation 'com.android.support:appcompat-v7:28.0.0-alpha1', to be able t
 - com.jjoe64:graphview:4.2.2
 - joda-time:joda-time
 - android.arch.persistence.room
-
-## Info
-written by Kun Zhang (kunzhang1110@gmail.com), Juan Huang (hj0726j@gmail.com), Juan Pablo Molina and Zane Li.
