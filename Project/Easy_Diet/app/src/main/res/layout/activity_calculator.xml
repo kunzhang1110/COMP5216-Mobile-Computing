@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="81dp">
+
+
+    <TextView
+        android:id="@+id/tvProteinRangeHi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:text="@string/tvZero"
+        app:layout_constraintBottom_toTopOf="@+id/tvFatRangeHi"
+        app:layout_constraintStart_toStartOf="@+id/tvFatRangeHi" />
+
+    <TextView
+        android:id="@+id/tvFatRangeHi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="85dp"
+        android:text="@string/tvZero"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFatRangeLo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvFatRangeLo" />
+
+    <TextView
+        android:id="@+id/tvFatTitle"
+        android:layout_width="@dimen/tv_calculator_title"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/tvFatTitle"
+        app:layout_constraintEnd_toStartOf="@+id/tvFatRangeLo"
+        app:layout_constraintTop_toBottomOf="@+id/tvProteinTitle" />
+
+    <TextView
+        android:id="@+id/tvProteinTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/tvProteinTitle"
+        app:layout_constraintEnd_toEndOf="@+id/tvFatTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvFatTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvCarboTitle" />
+
+    <EditText
+        android:id="@+id/etTargetWeight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="58dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvWeightTarget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvWeightTarget" />
+
+    <EditText
+        android:id="@+id/etTargetDuration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="83dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvTargetDuration"
+        app:layout_constraintTop_toBottomOf="@+id/etTargetWeight" />
+
+    <Spinner
+        android:id="@+id/spPal"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/sp_calculator_height"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="117dp"
+        android:entries="@array/spPal"
+        android:prompt="@string/spPal_prompt"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCalculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvPal"
+        app:layout_constraintTop_toTopOf="@+id/etTargetWeight" />
+
+
+    <TextView
+        android:id="@+id/tvWeightTarget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/tvWeightTarget"
+        app:layout_constraintEnd_toStartOf="@+id/etTargetWeight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTargetDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/tvTargetDuration"
+        app:layout_constraintBottom_toTopOf="@+id/tvPal"
+        app:layout_constraintEnd_toStartOf="@+id/etTargetDuration"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="9dp"
+        android:text="@string/tvPal"
+        app:layout_constraintBottom_toBottomOf="@+id/spPal"
+        app:layout_constraintEnd_toStartOf="@+id/spPal"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCalculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="19dp"
+        android:text="@string/btnCalculate"
+        app:layout_constraintBottom_toTopOf="@+id/tvCaloriesTitle"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/tvCaloriesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="19dp"
+        android:text="@string/tvCaloriesTitle"
+        app:layout_constraintBottom_toTopOf="@+id/tvCarboRangeLo"
+        app:layout_constraintStart_toStartOf="@+id/tvCarboTitle" />
+
+
+    <Button
+        android:id="@+id/btnSaveCalculation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/btnSaveCalculation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCarboTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="@string/tvCarboTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvProteinTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvCaloriesTitle" />
+
+    <TextView
+        android:id="@+id/tvCalories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="@string/tvZero"
+        app:layout_constraintStart_toStartOf="@+id/tvCarboRangeLo"
+        app:layout_constraintTop_toBottomOf="@+id/btnCalculate" />
+
+    <TextView
+        android:id="@+id/tvCarboRangeLo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/tvZero"
+        app:layout_constraintBottom_toTopOf="@+id/tvProteinRangeLo"
+        app:layout_constraintStart_toStartOf="@+id/tvProteinRangeLo" />
+
+    <TextView
+        android:id="@+id/tvProteinRangeLo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:text="@string/tvZero"
+        app:layout_constraintBottom_toTopOf="@+id/tvFatRangeLo"
+        app:layout_constraintStart_toStartOf="@+id/tvFatRangeLo" />
+
+    <TextView
+        android:id="@+id/tvFatRangeLo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="17dp"
+        android:text="@string/tvZero"
+        app:layout_constraintBottom_toTopOf="@+id/btnSaveCalculation"
+        app:layout_constraintEnd_toEndOf="@+id/btnSaveCalculation" />
+
+    <TextView
+        android:id="@+id/tvCarboRangeHi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/tvZero"
+        app:layout_constraintBottom_toTopOf="@+id/tvProteinRangeHi"
+        app:layout_constraintStart_toStartOf="@+id/tvProteinRangeHi" />
+
+    <Spinner
+        android:id="@+id/spDiet"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/sp_calculator_height"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="14dp"
+        android:entries="@array/spDiet"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toTopOf="@+id/btnCalculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/spPal" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="28dp"
+        android:text="Diet Choice"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spDiet"
+        app:layout_constraintEnd_toStartOf="@+id/spDiet"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/colorLight"
+        app:itemTextColor="@color/colorLight"
+        app:menu="@menu/navigation"/>
+
+</android.support.constraint.ConstraintLayout>
