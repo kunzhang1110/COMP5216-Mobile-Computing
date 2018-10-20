@@ -16,16 +16,21 @@ git clone https://github.com/kunzhang1110/COMP5216-Mobile-Computing/tree/master/
 
 
 ### Testing Environment
-Device: NOKIA 6 TA-1033
-- Display Resolution: 1080 x 1920 pixels, 16:9 ratio (~403 ppi density)
-- Android OS: version 7.1.1
-API: Android API 28
-Java: Java 8
-IDE: Android Studio 3.2.1
+- Device: NOKIA 6 TA-1033
+    - Display Resolution: 1080 x 1920 pixels, 16:9 ratio (~403 ppi density)
+    - Android OS: version 7.1.1
+- API: Android API 28
+- Java: Java 8
+- IDE: Android Studio 3.2.1
 
 ### Android Studio
 Android Studio 3.2.1
-- Using any previous version needs to locate build.gradle (Module.app) and replace 'com.android.support:appcompat-v7:28.0.0' to implementation 'com.android.support:appcompat-v7:28.0.0-alpha1', to be able to preview layout.
+- Using any previous version needs to locate build.gradle (Module.app) and replace
+    ``` implementation 'com.android.support:appcompat-v7:28.0.0'
+```
+to
+```implementation 'com.android.support:appcompat-v7:28.0.0-alpha1'
+```, to be able to preview layout.
 - Layout Preview uses Nexus 4 as a default device
 
 ## Library Used
