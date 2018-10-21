@@ -1,30 +1,38 @@
 package au.edu.sydney.comp5216.easydiet.food;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
+import java.io.StringBufferInputStream;
+import java.net.URL;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.util.ArrayList;
+import java.util.Random;
+
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.DataOutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Random;
 
 import au.edu.sydney.comp5216.easydiet.R;
 import au.edu.sydney.comp5216.easydiet.log.LogActivity;
@@ -36,13 +44,16 @@ public class FoodActivity extends AppCompatActivity {
     EditText userInput;
     TextView calorieLable;
     TextView calorieAmount;
+    TextView tvEatenCalories;
     //TextView calorieRemainLabel;
     TextView calorieRemain;
     TextView mTextView;
     double calorieSum = 0;
-    double dailyIntake = 2000;
+    double dailyIntake;
     double remaining = 0;
+    double remaining2;
     ArrayList<String> foodRecommand = new ArrayList<String>();
+    JSONObject jsonResponse;
 
     private static final String LOGIN_REQUEST_URL = "https://covert-hips.000webhostapp.com/Foods.php";
 
@@ -50,26 +61,25 @@ public class FoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
-
-        Intent intent = getIntent();
-        final User user = (User) intent.getSerializableExtra("user");
-        final BottomNavigationView navigationView =  (BottomNavigationView) findViewById(R.id.navigationView);
-
-
-
         userInput = findViewById(R.id.inputDaily);
         //calorieLable = findViewById(R.id.textView);
         calorieAmount = findViewById(R.id.calorieAmount);
+        tvEatenCalories = findViewById(R.id.tvEatenCalories);
         //mTextView = (TextView) findViewById(R.id.textt);
         //calorieRemain = (TextView) findViewById(R.id.calorieRemain);
         Button calculateButton = (Button) this.findViewById(R.id.calculateButton);
+        final BottomNavigationView navigationView =  (BottomNavigationView) findViewById(R.id.navigationView);
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendPost();
+                calorieSum = sendPost();
             }
         });
         Button testing = (Button)this.findViewById(R.id.testing);
+
+        Intent intent = getIntent();
+        final User user = (User) intent.getSerializableExtra("user");
+        dailyIntake = user.getDailyCalorieTarget();
 
         testing.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -77,6 +87,7 @@ public class FoodActivity extends AppCompatActivity {
 
                 //calorieRemain.setText(Double.toString(dailyIntake-calorieSum));
                 remaining = dailyIntake-calorieSum;
+                remaining2 = remaining;
                 Log.i("remaining", String.valueOf(remaining));
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -84,22 +95,35 @@ public class FoodActivity extends AppCompatActivity {
 
                         try {
                             Log.i("tagconvertstr", "["+response+"]");
-                            JSONObject jsonResponse = new JSONObject(response);
+                            jsonResponse = new JSONObject(response);
                             //boolean success = jsonResponse.getBoolean("success");
 
-                                //Log.i("qR",queryResult);
-                                //String food_id = jsonResponse.getJSONObject("4").getString("Name");
-                                //Integer food_id2 = jsonResponse.getInt("food_id");
+                            //Log.i("qR",queryResult);
+                            //String food_id = jsonResponse.getJSONObject("4").getString("Name");
+                            //Integer food_id2 = jsonResponse.getInt("food_id");
 
-                               //Log.i("foodID", String.valueOf(food_id));
-                                //Log.i("foodID2", String.valueOf(food_id2));
-                                generateFoodRecommand(jsonResponse);
-                                Intent intent = new Intent(FoodActivity.this, FoodListActivity.class);
-                                for (int i = 0; i < foodRecommand.size();i++){
-                                    intent.putExtra(String.valueOf(i),"Name: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("item_name") + "\n" +"Protein: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Protein") + "\n" + "Calorie: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Cal") + "\n"+ "Fat: " + jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Fat") );
-                                }
-                                intent.putExtra("Size",String.valueOf(foodRecommand.size()));
-                                startActivity(intent);
+                            //Log.i("foodID", String.valueOf(food_id));
+                            //Log.i("foodID2", String.valueOf(food_id2));
+                            generateFoodRecommand(jsonResponse);
+                            Intent intent = new Intent(FoodActivity.this, FoodListActivity.class);
+                            for (int i = 0; i < foodRecommand.size();i++){
+                                intent.putExtra(String.valueOf(i),"Name: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("item_name") + "\n\t" +"- Protein: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Protein") + "\n\t" + "- Calorie: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Cal") + "\n\t"+ "- Fat: " + jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Fat") );
+                            }
+                            intent.putExtra("Size",String.valueOf(foodRecommand.size()));
+
+                            generateFoodRecommand(jsonResponse);
+                            for (int i = 0; i < foodRecommand.size();i++){
+                                intent.putExtra(String.valueOf(i)+100,"Name: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("item_name") + "\n\t" +"- Protein: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Protein") + "\n\t" + "- Calorie: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Cal") + "\n\t"+ "- Fat: " + jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Fat") );
+                            }
+                            intent.putExtra("Size2",String.valueOf(foodRecommand.size()));
+
+                            generateFoodRecommand(jsonResponse);
+                            for (int i = 0; i < foodRecommand.size();i++){
+                                intent.putExtra(String.valueOf(i)+200,"Name: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("item_name") + "\n\t" +"- Protein: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Protein") + "\n\t" + "- Calorie: "+jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Cal") + "\n\t"+ "- Fat: " + jsonResponse.getJSONObject(foodRecommand.get(i)).getString("Fat") );
+                            }
+                            intent.putExtra("Size3",String.valueOf(foodRecommand.size()));
+                            intent.putExtra("user", user);
+                            startActivity(intent);
 
 
                         } catch (JSONException e) {
@@ -115,12 +139,10 @@ public class FoodActivity extends AppCompatActivity {
             }
         });
 
-
-
         navigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener(){
-                    Intent intent;
 
+                    Intent intent;
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item){
                         switch (item.getItemId()){
@@ -146,15 +168,6 @@ public class FoodActivity extends AppCompatActivity {
 
                 }
         );
-
-
-
-
-
-
-
-
-
     }
 
     public double sendPost() {
@@ -204,8 +217,17 @@ public class FoodActivity extends AppCompatActivity {
                     Log.i("SUM", String.valueOf(calorieSum));
                     a = a.substring(a.indexOf("calories") + 10, a.indexOf("nf_total_fat") - 2);
                     Log.i("data", a);
-                    calorieAmount.setText( Double.toString(dailyIntake -calorieSum));
+
                     remaining = dailyIntake - calorieSum;
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvEatenCalories.setText(String.format("%.2f", calorieSum));
+                            calorieAmount.setText(String.format("%.2f", remaining));
+                        }
+                    });
+
 
                     conn.disconnect();
                 } catch (Exception e) {
@@ -252,8 +274,19 @@ public class FoodActivity extends AppCompatActivity {
             }
         }
         Log.i("a", foodRecommand.toString());
+        remaining = remaining2;
         return foodRecommand;
     }
+
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i("shake","shake");
+
+
+
+    }
+
+
 
 }
 

@@ -1,14 +1,15 @@
 package au.edu.sydney.comp5216.easydiet.login;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,7 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import au.edu.sydney.comp5216.easydiet.R;
-import au.edu.sydney.comp5216.easydiet.dao.LoginRequest;
+import au.edu.sydney.comp5216.easydiet.requests.LoginRequest;
 import au.edu.sydney.comp5216.easydiet.profile.User;
 import au.edu.sydney.comp5216.easydiet.profile.UserActivity;
 
@@ -47,6 +48,17 @@ public class LoginActivity extends AppCompatActivity {
         BtnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+                if(TextUtils.isEmpty(etUsername.getText().toString())){
+                    Toast.makeText(LoginActivity.this, "Please enter your username ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(etPassword.getText().toString())){
+                    Toast.makeText(LoginActivity.this, "Please enter your password ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 final String userName = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
 
@@ -68,12 +80,12 @@ public class LoginActivity extends AppCompatActivity {
                                         null,
                                         jsonResponse.getInt("age"),
                                         jsonResponse.getInt("height"),
-                                        jsonResponse.getInt("weight"),
+                                        jsonResponse.getDouble("weight"),
                                         jsonResponse.getInt("pal"),
                                         jsonResponse.getString("gender"),
 
                                         jsonResponse.getInt("dietChoice"),
-                                        jsonResponse.getInt("targetWeight"),
+                                        jsonResponse.getDouble("targetWeight"),
                                         jsonResponse.getInt("targetDuration"),
 
                                         jsonResponse.getDouble("dailyCarboTargetHi"),
@@ -83,21 +95,18 @@ public class LoginActivity extends AppCompatActivity {
                                         jsonResponse.getDouble("dailyFatTargetHi"),
                                         jsonResponse.getDouble("dailyFatTargetLo"),
                                         jsonResponse.getDouble("dailyCalorieTarget")
-
                                 );
-
-
 
                                 Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                                 intent.putExtra("user", user);
                                 LoginActivity.this.startActivity(intent);
 
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                builder.setMessage("Login Failed")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+//                                builder.setMessage("\nLogin Failed. \n\nCheck your username and password.\n")
+//                                        .create()
+//                                        .show();
+                                Toast.makeText(LoginActivity.this, "Login Failed. Check your username and password.", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

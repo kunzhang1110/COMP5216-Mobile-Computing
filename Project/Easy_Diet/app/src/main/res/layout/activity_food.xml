@@ -4,87 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".food.FoodActivity">
+    tools:context=".food.FoodActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/tvEatenCalories"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_marginStart="8dp"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="@dimen/login_short"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_marginTop="48dp"
+        android:text="Calories in your food"
+        app:layout_constraintStart_toStartOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/calculateButton" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:text="Type in the food you have eaten or plan to eat today."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="35dp"
-        android:text="calorie remaining:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/calorieAmount"
-        app:layout_constraintEnd_toStartOf="@+id/calorieAmount" />
+        android:layout_width="@dimen/login_short"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_marginTop="8dp"
+        android:text="Calorie Remaining"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
         android:id="@+id/inputDaily"
-        android:layout_width="wrap_content"
-        android:layout_height="93dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        app:layout_constraintBottom_toBottomOf="@+id/calculateButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text">
+        android:hint="A bacon and two eggs"
+        app:layout_constraintStart_toStartOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/text">
 
         <requestFocus />
     </EditText>
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
-        android:text="Enter your daily intake"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <Button
         android:id="@+id/calculateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="199dp"
-        android:layout_marginEnd="4dp"
-        android:text="calculate your calorie"
-        app:layout_constraintEnd_toEndOf="@+id/inputDaily"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="@dimen/login_long"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="Get Calories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputDaily" />
 
     <TextView
         android:id="@+id/calorieAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="26dp"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/login_long_height"
         android:text="0           "
-        app:layout_constraintEnd_toEndOf="@+id/calculateButton"
-        app:layout_constraintTop_toBottomOf="@+id/calculateButton" />
+        app:layout_constraintStart_toStartOf="@+id/tvEatenCalories"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
 
 
     <Button
         android:id="@+id/testing"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
-        android:text="CHECK THE RECOMMANDATION"
-        app:layout_constraintBottom_toTopOf="@+id/navigationView"
-        app:layout_constraintEnd_toEndOf="@+id/inputDaily"
-        app:layout_constraintStart_toStartOf="@+id/calculateButton" />
+        android:layout_width="@dimen/login_long"
+        android:layout_height="@dimen/btn_long_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="Check Food Recommendation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationView"
-        android:layout_width="0dp"
+        android:layout_width="384dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/colorLight"
         app:itemTextColor="@color/colorLight"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
 
 </android.support.constraint.ConstraintLayout>

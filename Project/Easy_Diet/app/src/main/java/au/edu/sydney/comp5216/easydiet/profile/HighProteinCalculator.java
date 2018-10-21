@@ -18,7 +18,7 @@ public class HighProteinCalculator extends DietCalculator {
 
     public ArrayList<Double> calculateDailyProteinTarget(){
 
-        int weight = user.getWeight();
+        double weight = user.getWeight();
         ArrayList<Double> dailyProteinTargetRange = new ArrayList<>();
 
         double dailyProteinLower = 1.6 * weight;

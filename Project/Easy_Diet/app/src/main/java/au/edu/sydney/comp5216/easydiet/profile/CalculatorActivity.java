@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,13 +25,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 import au.edu.sydney.comp5216.easydiet.R;
-import au.edu.sydney.comp5216.easydiet.dao.UpdateRequest;
+import au.edu.sydney.comp5216.easydiet.requests.UpdateRequest;
 import au.edu.sydney.comp5216.easydiet.food.FoodActivity;
 import au.edu.sydney.comp5216.easydiet.log.LogActivity;
 import au.edu.sydney.comp5216.easydiet.log.LogEntry;
@@ -89,7 +88,20 @@ public class CalculatorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int targetWeight = Integer.parseInt(etTargetWeight.getText().toString());
+                if(TextUtils.isEmpty(etTargetWeight.getText().toString())){
+                    Toast.makeText(CalculatorActivity.this, "Please enter your target weight", Toast.LENGTH_SHORT).show();
+                    return;
+                }else if (Double.parseDouble(etTargetWeight.getText().toString()) > user.getWeight()){
+                    Toast.makeText(CalculatorActivity.this, "Your target weight should be less than your starting weight.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(etTargetDuration.getText().toString())){
+                    Toast.makeText(CalculatorActivity.this, "Please enter your target days", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                double targetWeight = Double.parseDouble(etTargetWeight.getText().toString());
                 int targetDuration = Integer.parseInt(etTargetDuration.getText().toString());
                 int pal = spPal.getSelectedItemPosition();
                 int dietChoice = spDiet.getSelectedItemPosition();
@@ -101,7 +113,6 @@ public class CalculatorActivity extends AppCompatActivity {
 
 
                 DietCalculator dietCalculator = DietCalculatorFactory.getCalulator(user, dietChoice);
-                //TODO if values are negative, be realistic!
                 double dailyCalorieTarget = dietCalculator.getDailyCalorieTarget();
                 double dailyCarboTargetHi = dietCalculator.getDailyCarboTargetRange().get(1);
                 double dailyCarboTargetLo = dietCalculator.getDailyCarboTargetRange().get(0);
@@ -111,7 +122,13 @@ public class CalculatorActivity extends AppCompatActivity {
                 double dailyFatTargetHi = dietCalculator.getDailyFatTargetRange().get(1);
                 double dailyFatTargetLo = dietCalculator.getDailyFatTargetRange().get(0);
 
-                Log.i("xxxDietCalc", "" + dailyProteinTargetLo);
+                //Check Unrealistic Plan
+                if(dietCalculator.getDailyCalorieTarget()< 200.0){
+                    Toast.makeText(CalculatorActivity.this, "You need at least 200 Cal per day. Change your targets to make the plan more realistic", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
                 tvCalories.setText(String.format("%.2f", dailyCalorieTarget));
                 tvCarboRangeLo.setText(String.format("%.2f", dailyCarboTargetLo));
                 tvCarboRangeHi.setText(String.format("%.2f", dailyCarboTargetHi));
@@ -124,6 +141,8 @@ public class CalculatorActivity extends AppCompatActivity {
                     tvFatRangeLo.setText(String.format("%.2f", dailyFatTargetLo));
                     tvFatRangeHi.setText(String.format("%.2f", dailyFatTargetHi));
                 }
+
+
                 user.setDailyCalorieTarget(dailyCalorieTarget);
                 user.setDailyCarboTargetHi(dailyCarboTargetHi);
                 user.setDailyCarboTargetLo(dailyCarboTargetLo);
@@ -139,13 +158,13 @@ public class CalculatorActivity extends AppCompatActivity {
         btnSaveCalculation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 saveToServer(user);
                 deleteAllFromDatabase();
                 saveToRoom(user);
                 Intent intent = new Intent();
                 intent.putExtra("user",user);
                 setResult(RESULT_OK, intent); // set result code and bundle data for response
-                Log.i("xxxHere","here"+intent.getSerializableExtra("user"));
                 finish(); // closes the activity, pass data to parent
             }
         });
@@ -234,21 +253,21 @@ public class CalculatorActivity extends AppCompatActivity {
 
         double newWeight = startingWeight;
 
-        //test case
-        Random rand = new Random();
-        for(int i=0; i<duration; i++){//duration - 1 in total
-            calendar.add(Calendar.DATE, 1);
-            newWeight -= weightLossPerDay;
-            logEntry = new LogEntry(calendar.getTimeInMillis(),newWeight, newWeight + rand.nextDouble() -1);
-            saveToDatabase(logEntry);
-        }
-        //real case
+//        //test case
+//        Random rand = new Random();
 //        for(int i=0; i<duration; i++){//duration - 1 in total
 //            calendar.add(Calendar.DATE, 1);
 //            newWeight -= weightLossPerDay;
-//            logEntry = new LogEntry(calendar.getTimeInMillis(),newWeight, 0.00);
+//            logEntry = new LogEntry(calendar.getTimeInMillis(),newWeight, newWeight + rand.nextDouble() -1);
 //            saveToDatabase(logEntry);
 //        }
+        //real case
+        for(int i=0; i<duration; i++){//duration - 1 in total
+            calendar.add(Calendar.DATE, 1);
+            newWeight -= weightLossPerDay;
+            logEntry = new LogEntry(calendar.getTimeInMillis(),newWeight, 0.00);
+            saveToDatabase(logEntry);
+        }
     }
 
     //Database methods ------------------------------------------------
@@ -300,6 +319,15 @@ public class CalculatorActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        setResult(RESULT_CANCELED, intent); // set result code and bundle data for response
+        finish(); // closes the activity, pass data to parent
+    }
+
+
 
 
 }

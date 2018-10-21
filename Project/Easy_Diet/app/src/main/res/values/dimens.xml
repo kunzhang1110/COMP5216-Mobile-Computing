@@ -13,5 +13,6 @@
     <dimen name="btn_long_width">100dp</dimen>
     <dimen name="btn_long_height">30dp</dimen>
     <dimen name="button_short_width">72dp</dimen>
+    <dimen name="register_row_spacing">12dp</dimen>
 
 </resources>

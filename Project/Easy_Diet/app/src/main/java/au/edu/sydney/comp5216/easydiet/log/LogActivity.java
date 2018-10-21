@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
@@ -29,6 +30,7 @@ import com.jjoe64.graphview.series.Series;
 import org.joda.time.DateTime;
 
 import java.lang.ref.WeakReference;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -72,8 +74,11 @@ public class LogActivity extends AppCompatActivity {
         readItemsFromDatabase();
         Log.i("xxxList", ""+logEntryList);
         drawGraph();
+        drawGraph();
 
+        //Log Save Button
         btnLogSave.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 double weight = Double.parseDouble(etEnterWeight.getText().toString());
@@ -82,7 +87,6 @@ public class LogActivity extends AppCompatActivity {
                 calendar.set(Calendar.MINUTE, 0);
                 calendar.set(Calendar.SECOND, 0);
                 calendar.set(Calendar.MILLISECOND, 0);
-                Log.i("xxxCalenderLog" ,""+calendar.getTimeInMillis());
 
                 int index = 0;
                 for(int i = 0; i< logEntryList.size(); i++){
@@ -97,7 +101,7 @@ public class LogActivity extends AppCompatActivity {
                 saveToDatabase(logEntry);
                 logEntryList = new ArrayList<>();
                 readItemsFromDatabase();
-                Log.i("xxxList", ""+logEntryList);
+                drawGraph();
                 drawGraph();
             }
         });
@@ -176,10 +180,7 @@ public class LogActivity extends AppCompatActivity {
         actualSeries.setDataPointsRadius(10);
         actualSeries.setTitle("Actual");
 
-        // set grid label
-        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(2);
-        graph.getGridLabelRenderer().setHumanRounding(false);
+
 
         // set view port
         graph.getViewport().setScalable(true);
@@ -188,6 +189,21 @@ public class LogActivity extends AppCompatActivity {
         graph.getViewport().setMinX(logEntryList.get(0).getStartTime());
         graph.getViewport().setMaxX(logEntryList.get(3).getStartTime());
         graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinY(logEntryList.get(0).getStartTime());
+        graph.getViewport().setMaxY(logEntryList.get(logEntryList.size()-1).getStartTime());
+        graph.getViewport().setXAxisBoundsManual(true);
+        // set grid label
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMinimumFractionDigits(0);
+        nf.setMaximumFractionDigits(2);
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(null, nf));
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        graph.getGridLabelRenderer().setVerticalAxisTitle("      ");
+//        graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
+
+        graph.getGridLabelRenderer().setNumHorizontalLabels(2);
+        graph.getGridLabelRenderer().setNumVerticalLabels(5);
+        graph.getGridLabelRenderer().setHumanRounding(false);
 
         //set legend
         LegendRenderer legendRenderer = graph.getLegendRenderer();
@@ -201,7 +217,7 @@ public class LogActivity extends AppCompatActivity {
             public void onTap(Series series, DataPointInterface dataPoint) {
                 Toast.makeText(LogActivity.this,
                         "Planned Weight: "+ String.format("%.2f",dataPoint.getY()) + " kg",
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -210,7 +226,7 @@ public class LogActivity extends AppCompatActivity {
             public void onTap(Series series, DataPointInterface dataPoint) {
                 Toast.makeText(LogActivity.this,
                         "Actual Weight: "+ String.format("%.2f",dataPoint.getY()) + " kg",
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

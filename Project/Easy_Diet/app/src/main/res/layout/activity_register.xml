@@ -23,9 +23,9 @@
         android:id="@+id/edName"
         android:layout_width="@dimen/login_long"
         android:layout_height="@dimen/login_long_height"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/register_instruct"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Name"
@@ -39,7 +39,7 @@
         android:layout_height="@dimen/login_long_height"
         android:layout_below="@+id/edName"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Username"
@@ -54,7 +54,7 @@
         android:layout_below="@+id/edUserName"
         android:layout_alignStart="@+id/edName"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Password"
@@ -69,10 +69,10 @@
         android:layout_height="@dimen/login_long_height"
 
 
-        android:layout_below="@+id/edHeight"
-        android:layout_alignStart="@+id/edHeight"
+        android:layout_below="@+id/edWeight"
+        android:layout_alignStart="@+id/edWeight"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
         android:entries="@array/spGender" />
 
     <EditText
@@ -82,7 +82,7 @@
         android:layout_below="@+id/edPassword"
         android:layout_alignStart="@+id/edPassword"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
         android:ems="10"
         android:hint="Age"
         android:inputType="number"
@@ -90,46 +90,30 @@
         tools:layout_editor_absoluteY="138dp" />
 
     <EditText
-        android:id="@+id/edWeight"
+        android:id="@+id/edHeight"
         android:layout_width="@dimen/login_short"
         android:layout_height="@dimen/login_long_height"
         android:layout_below="@+id/edAge"
         android:layout_alignStart="@+id/edAge"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
         android:ems="10"
         android:hint="Height (cm)"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="184dp" />
-
-    <EditText
-        android:id="@+id/edHeight"
-        android:layout_width="@dimen/login_short"
-        android:layout_height="@dimen/login_long_height"
-        android:layout_below="@+id/edWeight"
-        android:layout_alignStart="@+id/edWeight"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Weight (kg)"
-        android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="230dp" />
 
 
     <Button
         android:id="@+id/btRegister"
         android:layout_width="@dimen/btn_long_width"
         android:layout_height="@dimen/btn_long_height"
+        android:layout_below="@+id/spGender"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="69dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="65dp"
-        android:layout_marginBottom="71dp"
-        android:background="@color/colorPrimary"
-        android:backgroundTintMode="multiply"
         android:text="Register"
         android:textColor="@color/colorLight"
         tools:layout_editor_absoluteX="3dp"
@@ -149,10 +133,10 @@
         android:id="@+id/imageView6"
         android:layout_width="@dimen/login_icon_height"
         android:layout_height="@dimen/login_icon_height"
+        android:layout_below="@+id/register_instruct"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
         app:srcCompat="@drawable/ic_name" />
 
     <ImageView
@@ -170,7 +154,7 @@
         android:layout_width="@dimen/login_icon_height"
         android:layout_height="@dimen/login_icon_height"
         android:layout_alignStart="@+id/imageView"
-        android:layout_alignTop="@+id/edWeight"
+        android:layout_alignTop="@+id/edHeight"
         app:srcCompat="@drawable/ic_height" />
 
     <ImageView
@@ -186,8 +170,32 @@
         android:layout_width="@dimen/login_icon_height"
         android:layout_height="@dimen/login_icon_height"
         android:layout_alignStart="@+id/imageView7"
-        android:layout_alignTop="@+id/edHeight"
+        android:layout_alignTop="@+id/edWeight"
         android:layout_marginStart="0dp"
         app:srcCompat="@drawable/ic_weight" />
+
+    <EditText
+        android:id="@+id/edWeight"
+        android:layout_width="@dimen/login_short"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_below="@+id/edHeight"
+        android:layout_alignStart="@+id/edHeight"
+
+        android:layout_marginTop="@dimen/register_row_spacing"
+        android:ems="10"
+        android:hint="Weight (kg)"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="230dp" />
+
+    <TextView
+        android:id="@+id/register_instruct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:text="* All Fields are required." />
 
 </RelativeLayout>

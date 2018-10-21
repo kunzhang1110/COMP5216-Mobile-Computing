@@ -19,6 +19,7 @@ import au.edu.sydney.comp5216.easydiet.log.LogActivity;
 
 public class UserActivity extends AppCompatActivity {
     public final int CALCULATE_REQUEST_CODE = 1;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +42,14 @@ public class UserActivity extends AppCompatActivity {
         final TextView welcome = (TextView) findViewById(R.id.welcomeTxt);
 
         Intent intent = getIntent();
-        final User user = (User) intent.getSerializableExtra("user");
+        user = (User) intent.getSerializableExtra("user");
 
         welcome.setText(welcome.getText() + " " + user.getUserName() + "!");
         tvAge.setText(String.valueOf(user.getAge()));
         tvHeight.setText(String.valueOf(user.getHeight()));
-        tvWeight.setText(String.valueOf(user.getWeight()));
+        tvWeight.setText(String.format("%.1f", user.getWeight()));
         tvGender.setText(String.valueOf(user.getGender()));
-        tvUserWeightTarget.setText(String.valueOf(user.getTargetWeight()));
+        tvUserWeightTarget.setText(String.format("%.1f", user.getTargetWeight()));
         tvUserTargetDuration.setText(String.valueOf(user.getTargetDuration()));
         tvUserCalories.setText(String.format("%.0f", user.getDailyCalorieTarget()));
 
@@ -57,8 +58,6 @@ public class UserActivity extends AppCompatActivity {
         }else{
             tvUserPlan.setText("Keto");
         }
-
-
 
         //set button
         btnToCalculation.setOnClickListener(new View.OnClickListener(){
@@ -100,19 +99,14 @@ public class UserActivity extends AppCompatActivity {
 
                 }
         );
-
-
-
-
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Log.i("xxxHere","here"+intent.getSerializableExtra("user"));
         if (resultCode == RESULT_OK){
 
-            User user = (User) intent.getSerializableExtra("user");
+            user = (User) intent.getSerializableExtra("user");
             final TextView tvUserWeightTarget = (TextView) findViewById(R.id.tvUserWeightTarget);
             final TextView tvUserTargetDuration = (TextView) findViewById(R.id.tvUserTargetDuration);
             final TextView tvUserCalories = (TextView) findViewById(R.id.tvUserCalories);
@@ -130,5 +124,10 @@ public class UserActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

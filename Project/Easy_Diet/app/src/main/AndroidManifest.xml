@@ -29,7 +29,8 @@
         <activity android:name=".log.LogActivity"
             android:label="Set Diet Plan">
         </activity>
-        <activity android:name=".food.FoodActivity" />
+        <activity android:name=".food.FoodActivity"
+            android:label="Set Diet Plan"/>
         <activity android:name=".food.FoodListActivity" />
     </application>
 

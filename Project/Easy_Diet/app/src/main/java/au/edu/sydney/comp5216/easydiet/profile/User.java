@@ -13,13 +13,13 @@ public class User implements Serializable {
     // User Physical Information
     private int age;
     private int height;
-    private int weight;
+    private double weight;
     private int pal;   //Physical Activity Level (PAL) 0~4
     private String gender; //"MALE" or "FEMALE"
 
     // User Calculation Input Information NULLABLE
     private int dietChoice;
-    private int targetWeight;
+    private double targetWeight;
     private int targetDuration;
 
     // User Calculation Output Information NULLABLE
@@ -32,8 +32,8 @@ public class User implements Serializable {
     private double dailyCalorieTarget;
 
     public User(int userID, String name, String userName, String password,
-                int age, int height, int weight, int pal, String gender,
-                int dietChoice, int targetWeight, int targetDuration,
+                int age, int height, double weight, int pal, String gender,
+                int dietChoice, double targetWeight, int targetDuration,
                 double dailyCarboTargetHi, double dailyCarboTargetLo, double dailyProteinTargetHi, double dailyProteinTargetLo,
                 double dailyFatTargetHi, double dailyFatTargetLo, double dailyCalorieTarget) {
         this.userID = userID;
@@ -100,11 +100,11 @@ public class User implements Serializable {
         this.age = age;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -140,11 +140,11 @@ public class User implements Serializable {
         this.dietChoice = dietChoice;
     }
 
-    public int getTargetWeight() {
+    public double getTargetWeight() {
         return targetWeight;
     }
 
-    public void setTargetWeight(int targetWeight) {
+    public void setTargetWeight(double targetWeight) {
         this.targetWeight = targetWeight;
     }
 

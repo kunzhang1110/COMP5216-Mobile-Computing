@@ -1,4 +1,4 @@
-package au.edu.sydney.comp5216.easydiet.dao;
+package au.edu.sydney.comp5216.easydiet.requests;
 
 import android.util.Log;
 

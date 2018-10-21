@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="0dp"
     tools:context=".profile.UserActivity"
     tools:layout_editor_absoluteY="81dp">
 
@@ -27,7 +28,7 @@
         android:layout_width="@dimen/login_long"
         android:layout_height="@dimen/btn_long_height"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:text="@string/btnToCalculationText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,10 +138,9 @@
                 android:id="@+id/tvGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
+                android:layout_marginTop="8dp"
                 android:text="Gender"
-                app:layout_constraintEnd_toEndOf="@+id/tvAge"
-                app:layout_constraintStart_toEndOf="@+id/tvAge"
+                app:layout_constraintStart_toStartOf="@+id/tvWeight"
                 app:layout_constraintTop_toBottomOf="@+id/tvWeight" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

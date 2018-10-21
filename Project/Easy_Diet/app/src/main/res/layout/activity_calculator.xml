@@ -31,7 +31,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
 
             <Button
                 android:id="@+id/btnSaveCalculation"
@@ -159,7 +160,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
 
             <TextView
                 android:id="@+id/textView"
@@ -219,7 +221,7 @@
                 android:layout_height="@dimen/login_long_height"
                 android:layout_marginStart="32dp"
                 android:ems="10"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 app:layout_constraintStart_toEndOf="@+id/tvWeightTarget"
                 app:layout_constraintTop_toTopOf="@+id/tvWeightTarget" />
 
