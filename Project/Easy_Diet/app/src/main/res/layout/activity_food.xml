@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/tvEatenCalories"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/login_long_height"
         android:layout_marginStart="8dp"
         android:text="0"
@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="@dimen/login_short"
+        android:layout_width="150dp"
         android:layout_height="@dimen/login_long_height"
         android:layout_marginTop="48dp"
         android:text="Calories in your food"
@@ -73,9 +73,9 @@
 
     <TextView
         android:id="@+id/calorieAmount"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/login_long_height"
-        android:text="0           "
+        android:text="0"
         app:layout_constraintStart_toStartOf="@+id/tvEatenCalories"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
 

@@ -1,6 +1,12 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -9,6 +15,8 @@
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="buttonStyle">@style/ButtonDefault</item>
     </style>
+
+
 
     <style name="ButtonDefault" parent="android:Widget.Button">
         <item name="android:textColor">@color/colorLight</item>

@@ -42,7 +42,7 @@
         android:layout_height="@dimen/btn_long_height"
         android:layout_below="@+id/EdPasswordLogin"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="48dp"
         android:text="LOGIN"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="122dp" />
