@@ -29,7 +29,7 @@ Android Studio 3.2.1
 to implementation 'com.android.support:appcompat-v7:28.0.0-alpha1', to be able to preview layout.
 - Layout Preview uses Nexus 4 as a default device
 
-## Library Used
+## Libraries
 - com.android.volley:volley:1.1.0
 - com.jjoe64:graphview:4.2.2
 - joda-time:joda-time
