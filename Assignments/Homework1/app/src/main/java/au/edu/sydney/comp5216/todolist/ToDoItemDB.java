@@ -12,7 +12,7 @@ public abstract class ToDoItemDB extends RoomDatabase {
 
     public abstract ToDoItemDao toDoItemDao();
 
-    public static ToDoItemDB getDatabase(Context context) {
+    static ToDoItemDB getDatabase(Context context) {
         if (DBINSTANCE == null) {
             synchronized (ToDoItemDB.class) {   //static method passing class name instead of object (this)
                 DBINSTANCE = Room.databaseBuilder(context.getApplicationContext(),

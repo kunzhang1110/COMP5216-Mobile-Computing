@@ -26,15 +26,14 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Define variables
     ListView listView;
     LinkedHashMap<Long, ArrayList<String>> dataRows;
     SimpleAdapter itemsAdapter;
     public final int ADD_ITEM_REQUEST_CODE = 1;
     public final int EDIT_ITEM_REQUEST_CODE = 2;
-    List<LinkedHashMap<String, String>>  listItems;
+    List<LinkedHashMap<String, String>> listItems;
 
-    ToDoItemDB  db;
+    ToDoItemDB db;
     ToDoItemDao toDoItemDao;
 
     @Override
@@ -43,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        // Initiate variables
+        // Initialize variables
         listView = (ListView) findViewById(R.id.listView);
 
         db = ToDoItemDB.getDatabase(this.getApplication().getApplicationContext());
         toDoItemDao = db.toDoItemDao();
-        dataRows = new LinkedHashMap<>(); // (itemTime, (itemID, itemName)) TreeMap is used for sorting
+        dataRows = new LinkedHashMap<>(); // (itemTime, (itemID, itemName)) LinkedHashMap is used for sorting
 
         //setups
         setupListViewAdapter();
@@ -64,21 +63,21 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     // Button addNew Click Action
-    public void onAddNewClick(View view){
+    public void onAddNewClick(View view) {
         Intent intent = new Intent(MainActivity.this, EditAddItemActivity.class);
-        if (intent != null){
-            startActivityForResult(intent, ADD_ITEM_REQUEST_CODE);
-        }
+        startActivityForResult(intent, ADD_ITEM_REQUEST_CODE);
+
     }
 
-    private void setupListViewAdapter(){
+    // Setup double-line List using SimpleAdapter
+    private void setupListViewAdapter() {
         readItemsFromDatabase();    //store in dataRows
         listItems = new ArrayList<>();
-        Log.i("dataRows:", "dataRows:"+dataRows.keySet()+dataRows.values());
+        Log.i("dataRows:", "dataRows:" + dataRows.keySet() + dataRows.values());
 
+        //store data in ArrayList listItems to be used for SimpleAdapter
         Iterator<Map.Entry<Long, ArrayList<String>>> itr = dataRows.entrySet().iterator();
-        while (itr.hasNext())
-        {
+        while (itr.hasNext()) {
             LinkedHashMap<String, String> resultsMap = new LinkedHashMap<>();
             Map.Entry<Long, ArrayList<String>> dataRow = itr.next();
             ArrayList<String> dataRowValue = dataRow.getValue();
@@ -137,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("MainActivity", "Clicked item " + position + ": " + updateItemName);
 
                 Intent intent = new Intent(MainActivity.this, EditAddItemActivity.class);
-                if (intent != null){
+                if (intent != null) {
                     // put "extras" into the bundle for access in the edit activity
                     intent.putExtra("updateItemName", updateItemName);
                     intent.putExtra("updateItemTime", updateItemTime);
@@ -153,19 +152,19 @@ public class MainActivity extends AppCompatActivity {
     // on returning to MainActivity update listView and dataRows
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK){
+        if (resultCode == RESULT_OK) {
             Long resultItemID = data.getLongExtra("resultItemID", -1);
             String resultItemName = data.getStringExtra("resultItemName");
             String resultItemTime = data.getStringExtra("resultItemTime");
 
-            Log.i("Update View",""+ resultItemName+ " " + resultItemTime);
+            Log.i("Update View", "" + resultItemName + " " + resultItemTime);
 
 
-            if(requestCode == ADD_ITEM_REQUEST_CODE){
+            if (requestCode == ADD_ITEM_REQUEST_CODE) {
 
 
-            } else if(requestCode == EDIT_ITEM_REQUEST_CODE){   //remove old itemView
-                int position =new ArrayList<>(dataRows.keySet()).indexOf(resultItemID);   //get item id
+            } else if (requestCode == EDIT_ITEM_REQUEST_CODE) {   //remove old itemView
+                int position = new ArrayList<>(dataRows.keySet()).indexOf(resultItemID);   //get item id
                 listItems.remove(position);// Remove item from the ArrayList
                 dataRows.remove(resultItemID); // Remove item from map
                 itemsAdapter.notifyDataSetChanged();// Notify listView adapter to update list
@@ -175,11 +174,11 @@ public class MainActivity extends AppCompatActivity {
             LinkedHashMap<String, String> newMap = new LinkedHashMap<>();
             newMap.put("Item Name", resultItemName);
             newMap.put("Item Time", resultItemTime);
-            ArrayList<String> newRowValue= new ArrayList<>();
+            ArrayList<String> newRowValue = new ArrayList<>();
             newRowValue.add(resultItemName);
             newRowValue.add(resultItemTime);
             listItems.add(0, newMap);   // newly saved item always on the top
-            LinkedHashMap<Long, ArrayList<String>> copiedMap= new LinkedHashMap<>(dataRows); //clone old dataRows
+            LinkedHashMap<Long, ArrayList<String>> copiedMap = new LinkedHashMap<>(dataRows); //clone old dataRows
             dataRows.clear();
             dataRows.putAll(copiedMap);
             dataRows.put(resultItemID, newRowValue);
@@ -189,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
     private void readItemsFromDatabase() {
         try {
             new readItemsFromDatabase(this, toDoItemDao).execute().get();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Log.e("readItemsFromDatabase", ex.getStackTrace().toString());
         }
     }
@@ -198,23 +197,23 @@ public class MainActivity extends AppCompatActivity {
         new deleteItemFromDatabase(this, toDoItemDao, id).execute();
     }
 
-    private static class readItemsFromDatabase extends AsyncTask<Void, Void, Void>{
+    private static class readItemsFromDatabase extends AsyncTask<Void, Void, Void> {
         //Use asynchronous task to run query on the background and wait for result
 
         private final WeakReference<MainActivity> mActivityRef;
-        private MainActivity mainActivity;
+
         private ToDoItemDao toDoItemDao;
 
         // Constructor
-        readItemsFromDatabase(MainActivity activity, ToDoItemDao dao){
+        readItemsFromDatabase(MainActivity activity, ToDoItemDao dao) {
             mActivityRef = new WeakReference<>(activity);   // weak reference to prevent memory leak
             toDoItemDao = dao;
-            mainActivity = mActivityRef.get();
         }
 
         @Override
         // Read items from database
         protected Void doInBackground(Void... voids) { // ... == vargars == Variable Arguments
+            MainActivity mainActivity = mActivityRef.get();
 
             List<ToDoItem> itemsFromDB = toDoItemDao.listAllDesc();
             mainActivity.dataRows = new LinkedHashMap<>();
@@ -232,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static class deleteItemFromDatabase extends AsyncTask<Void, Void, Void>{
+    private static class deleteItemFromDatabase extends AsyncTask<Void, Void, Void> {
         //Use asynchronous task to run query on the background and wait for result
 
         private final WeakReference<MainActivity> mActivityRef;
@@ -240,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         Long id;
 
         // Constructor
-        deleteItemFromDatabase(MainActivity activity, ToDoItemDao dao, Long id){
+        deleteItemFromDatabase(MainActivity activity, ToDoItemDao dao, Long id) {
             mActivityRef = new WeakReference<>(activity);
             toDoItemDao = dao;
             this.id = id;

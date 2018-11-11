@@ -1,14 +1,11 @@
-# Homework Simple TodoList
+# Homework 1 -  Simple TodoList
 
-## Commits Description 
-Initial Commit
-	* Use TreeMaps for datetime sorting
+## Description
+A Simple TodoList that stores data locally with ROOM.
 
-v1
-	* Use LinkedHashMap and SQL for datetime sorting
-	* Can add multiple in EditAddItemActivity
-	* Return to MainActivity via Back Button and onResume
-	
-v1.1
-	* Homework submission version
-	* Return to MainActivity via Save Button and Intent
+## Features
+* Implement double-line list with SimpleAdapter.
+* To prevent memory leak, WeakReferences are used for inner static classes that extending AsyncTask.
+* LinkedHashMap is chosen to manipulate data with timestamps as keys.
+* Use SQL for sorting by datetime
+* Return to MainActivity via Back Button or onResume

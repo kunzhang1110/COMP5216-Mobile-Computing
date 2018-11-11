@@ -19,7 +19,7 @@ public class ToDoItem {
     private String toDoItemTime;
 
 
-    public ToDoItem(String toDoItemName, String toDoItemTime){
+    public ToDoItem(String toDoItemName, String toDoItemTime) {
         this.toDoItemName = toDoItemName;
         this.toDoItemTime = toDoItemTime;
     }

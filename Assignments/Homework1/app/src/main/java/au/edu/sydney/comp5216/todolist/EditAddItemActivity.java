@@ -24,7 +24,7 @@ import java.util.Locale;
 public class EditAddItemActivity extends AppCompatActivity {
     EditText editTextItem;
     TextView timeTextView;
-    ToDoItemDB  db;
+    ToDoItemDB db;
     ToDoItemDao toDoItemDao;
     Long existingItemId;
     String itemName;
@@ -37,7 +37,7 @@ public class EditAddItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_add);
 
-        // initializing variables
+        // initialize variables
         editTextItem = (EditText) findViewById(R.id.editTextItem);
         timeTextView = (TextView) findViewById(R.id.timeTextView);
         db = ToDoItemDB.getDatabase(this.getApplication().getApplicationContext());
@@ -46,21 +46,21 @@ public class EditAddItemActivity extends AppCompatActivity {
         existingItemId = null;
 
         // get data from main activity
-        if (getIntent().getExtras() != null){
+        if (getIntent().getExtras() != null) {
             String existingItemName = getIntent().getStringExtra("updateItemName");
             String existingItemTime = getIntent().getStringExtra("updateItemTime");
-            existingItemId = getIntent().getLongExtra("updateItemId",-1 );
+            existingItemId = getIntent().getLongExtra("updateItemId", -1);
             editTextItem.setText(existingItemName);
             timeTextView.setText("Last Edit:" + existingItemTime);
             updateFlag = true;
-            Log.i("getIntent","intent"+existingItemId);
+            Log.i("getIntent", "intent" + existingItemId);
         }
     }
 
     // Button Save Click Action
-    public void onSave(View view){
+    public void onSave(View view) {
         itemName = editTextItem.getText().toString();  //get input from addItemEdiText
-        if (itemName != null && itemName.length() > 0) {
+        if (itemName.length() > 0) {
             Date currentTime = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
             itemTime = dateFormat.format(currentTime);
@@ -82,27 +82,27 @@ public class EditAddItemActivity extends AppCompatActivity {
     }
 
     // Button CancelF Click Action
-    public void onCancel(View view){
+    public void onCancel(View view) {
         itemName = editTextItem.getText().toString();  //get input from addItemEdiText
-        if (itemName != null && itemName.length() > 0){
+        if (itemName != null && itemName.length() > 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(EditAddItemActivity.this);   // this refers to the anonymous class; MainActivity.this refers to the MainActivity Context
             builder.setTitle(R.string.dialog_discard_title)
                     .setMessage(R.string.dialog_diescard_msg)
-                    .setPositiveButton(R.string.dialog_diescard_confirm, new DialogInterface.OnClickListener(){
-                        public void onClick(DialogInterface dialogInterface, int i){
+                    .setPositiveButton(R.string.dialog_diescard_confirm, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogInterface, int i) {
                             editTextItem.setText("");
                             Intent data = new Intent();
                             setResult(RESULT_CANCELED, data);
                             finish();
                         }
                     })
-                    .setNegativeButton(R.string.dialog_diescard_cancel, new DialogInterface.OnClickListener(){
+                    .setNegativeButton(R.string.dialog_diescard_cancel, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogInterface, int i) {
 
                         }
                     });
             builder.create().show();    //create and display Alert Dialog
-        }else{
+        } else {
             Intent data = new Intent();
             setResult(RESULT_CANCELED, data);
             finish();
@@ -117,27 +117,28 @@ public class EditAddItemActivity extends AppCompatActivity {
 
         private final WeakReference<EditAddItemActivity> eActivityRef;
         private ToDoItemDao toDoItemDao;
-        private EditAddItemActivity editAddItemActivity;
+
         private String itemName;
         private String itemTime;
 
 
-         saveItemToDatabase(EditAddItemActivity activity, ToDoItemDao dao){
+        saveItemToDatabase(EditAddItemActivity activity, ToDoItemDao dao) {
             eActivityRef = new WeakReference<>(activity);
             toDoItemDao = dao;
-            editAddItemActivity = eActivityRef.get();
-            itemName = editAddItemActivity.itemName;
-            itemTime = editAddItemActivity.itemTime;
+
         }
 
         protected Void doInBackground(Void... voids) {
+            EditAddItemActivity editAddItemActivity = eActivityRef.get();
+            itemName = editAddItemActivity.itemName;
+            itemTime = editAddItemActivity.itemTime;
             ToDoItem item = new ToDoItem(itemName, itemTime);
-            if(editAddItemActivity.updateFlag){
+            if (editAddItemActivity.updateFlag) {
                 item.setToDoItemID(editAddItemActivity.existingItemId);
                 toDoItemDao.update(item);
-            }else{
+            } else {
                 editAddItemActivity.existingItemId = toDoItemDao.insert(item);
-                Log.i("SAVE",""+ editAddItemActivity.existingItemId);
+                Log.i("SAVE", "" + editAddItemActivity.existingItemId);
             }
             Log.i("SQLite saved item", item.getToDoItemName());
             return null;
