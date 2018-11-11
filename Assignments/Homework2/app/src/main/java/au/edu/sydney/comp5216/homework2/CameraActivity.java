@@ -77,14 +77,11 @@ public class CameraActivity extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         textureView = (TextureView)findViewById(R.id.textureView);
-        //From Java 1.4 , you can use keyword 'assert' to check expression true or false
         assert textureView != null;
         textureView.setSurfaceTextureListener(textureListener);
         btnCapture = (Button)findViewById(R.id.captureButton);
@@ -352,9 +349,6 @@ public class CameraActivity extends AppCompatActivity {
                 }
 
             },mBackgroundHandler);
-
-
-
 
         } catch (CameraAccessException e) {
             e.printStackTrace();

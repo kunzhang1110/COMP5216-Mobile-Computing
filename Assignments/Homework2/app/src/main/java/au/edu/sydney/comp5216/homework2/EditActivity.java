@@ -61,7 +61,6 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
-
     public void onCrop(View view){
         File file = new File(photoUri.getPath());
         Uri fileUri = FileProvider.getUriForFile( //file provider needed
