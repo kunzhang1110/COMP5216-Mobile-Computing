@@ -1,0 +1,11 @@
+#exclude
+*.pdf
+*.docx
+*.zip
+*.mp4
+*.pptx
+/AndroidExamples
+/Project/Proposal
+/Project/Final
+/Project/_ref
+/Lectures
