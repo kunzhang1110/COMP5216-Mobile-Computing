@@ -1,13 +1,7 @@
-# Homework 2 -  Running Dairy App
+# Homework 2 -  Camera App
 
 ## Description
-A Running Dairy App that :
-* Allows user to input distance and time to calculate pace and speed.
-* Shows real-time running route/direction on map.
-* Captures the distance and time per run.
-* Saves and displays history of runs with weekly averages
-* Provides access to Music player
-
+A Camera App that takes, displays, store and crops photos.
 
 ## Note
 * Implemented with Android Camera2 API.

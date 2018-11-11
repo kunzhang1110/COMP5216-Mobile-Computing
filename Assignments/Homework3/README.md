@@ -1,20 +1,28 @@
-# Homework 2 -  Camera App
+# Homework 3 -  Running Dairy App
 
 ## Description
-A Camera App that takes, displays, store and crops photos.
+A Running Dairy App that :
+* shows real-time running route/direction on map,
+* captures the distance and time per run,
+* saves and displays history of runs with weekly averages,
+* allows user to input distance and time to calculate pace and speed, and
+* provides access to default music player.
+
 
 ## Note
-* Implemented with Android Camera2 API.
-* Use only front (default) or back camera.
-* Camera real-time preview starts as soon as camera opens.
-* Taking photos freezes preview for 3 seconds.
-* Previewing and Taking photo use independent CaptureSession.
-* Photos are saved under ./images in external storage.
-* Displayed images are down-sampled.
-* Cropped images will overwrite the original files if saved.
-* Undo cropping will not save and overwrite the originals.
+* Use FINE_LOCATION for geo-locations.
+* Request location information every 2 seconds.
+* Routes are displayed as polylines connecting the locations.
+* Map's camera moves according to the latest location.
+* User can pause current tracking with a toggle Start/Pause button.
+* Switching to other apps (e.g. music player) will not stop tracking.
+* Log entries are displayed as expandable rows, grouped by weeks with weekly info shown.
+* UI: Tabs swiping are implemented with ViewPager.
+* Data saved locally (SQLite) using ROOM.
 
 
 ## Libraries
-* Android Image Cropper Library for cropping.
-* Android Glide for imaging loading and caching.
+* Google Mobile Service Maps.
+* Google Mobile Service Location.
+* Google Maps utils.
+* Joda, to manipulate date/time.
