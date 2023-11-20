@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.LoginActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+    <EditText
+        android:id="@+id/edUser"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/EdPasswordLogin"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_below="@+id/edUser"
+        android:layout_alignStart="@+id/edUser"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <Button
+        android:id="@+id/btLogin"
+        android:layout_width="@dimen/btn_long_width"
+        android:layout_height="@dimen/btn_long_height"
+        android:layout_below="@+id/EdPasswordLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:text="LOGIN"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="122dp" />
+
+    <TextView
+        android:id="@+id/txtRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Register Here"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="@dimen/login_icon_height"
+        android:layout_height="@dimen/login_icon_height"
+        android:layout_alignTop="@+id/edUser"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/ic_account" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="@dimen/login_icon_height"
+        android:layout_height="@dimen/login_icon_height"
+        android:layout_alignTop="@+id/EdPasswordLogin"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/ic_password" />
+
+</RelativeLayout>

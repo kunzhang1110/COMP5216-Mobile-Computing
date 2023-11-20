@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Homework3</string>
+    <string name="enter_distance">Enter a distance (km)</string>
+    <string name="enter_duration">Enter a running time (min)</string>
+    <string name="btnCalc">CALCULATE</string>
+    <string name="btnClear">CLEAR</string>
+    <string name="btnTogStart">START</string>
+    <string name="btnTogPause">PAUSE</string>
+    <string name="btnSaveRun">SAVE</string>
+</resources>

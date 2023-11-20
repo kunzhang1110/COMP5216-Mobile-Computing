@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    tools:context="comp5216.sydney.edu.au.mortgage.MainActivity">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/label_amount"
+            android:padding="10dip" />
+
+        <TextView
+            android:text="@string/amount"
+            android:id="@+id/amount" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/label_years"
+            android:padding="10dip" />
+
+        <TextView
+            android:text="@string/years"
+            android:id="@+id/years" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/label_rate"
+            android:padding="10dip" />
+
+        <TextView
+            android:text="@string/rate"
+            android:id="@+id/rate" />
+    </TableRow>
+
+    <!-- red line -->
+    <View
+        android:layout_height="5dip"
+        android:background="#FF0000" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/label_monthly_payment"
+            android:padding="10dip" />
+
+        <TextView
+            android:text="@string/monthly_payment"
+            android:id="@+id/payment" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/label_total_payment"
+            android:padding="10dip" />
+
+        <TextView
+            android:text="@string/total_payment"
+            android:id="@+id/total" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="50dip">
+        <Button
+            android:text="@string/modify_data"
+            android:onClick="modifyData"/>
+    </TableRow>
+
+</TableLayout>

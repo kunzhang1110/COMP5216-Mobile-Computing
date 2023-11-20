@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Easy Diet</string>
+    <string name="spPal_prompt">How active are you?</string>
+    <string-array name="spPal">
+        <item>Sedated</item>
+        <item>Light</item>
+        <item>Moderate</item>
+        <item>Heavy</item>
+        <item>Athlete</item>
+    </string-array>
+
+    <string-array name="spDiet">
+        <item>Protein</item>
+        <item>Keto</item>
+    </string-array>
+
+    <string-array name="spGender">
+        <item>FEMALE</item>
+        <item>MALE</item>
+    </string-array>
+
+    <string name="btnToCalculationText">Set Your Diet Plan</string>
+    <string name="tvWeightTarget">Weight Target</string>
+    <string name="tvTargetDuration">Days</string>
+    <string name="tvPal">Activity Level</string>
+    <string name="btnCalculate">Calculate</string>
+    <string name="tvCalories">Calories Allowed</string>
+    <string name="tvCaloriesTitle">Calories Allowed</string>
+    <string name="tvZero">0.00</string>
+    <string name="tvCarboTitle">Carbohydrate (g) </string>
+    <string name="tvProteinTitle">Protein (g) </string>
+    <string name="tvFatTitle">Fat (g) </string>
+    <string name="btnSaveCalculation">Save</string>
+
+
+
+
+    <string name="dialog_delete_title">delete?</string>
+    <string name="dialog_delete_msg">delete</string>
+    <string name="delete">delete!</string>
+    <string name="cancel">cancel</string>
+    <string name="tvUserTargetDurationTitle">Planned Days</string>
+</resources>

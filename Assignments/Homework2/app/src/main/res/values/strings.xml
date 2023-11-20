@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Homework2</string>
+    <string name="mainTitle">Photos</string>
+    <string name="takePhoto">Take Photo</string>
+    <string name="gridColNum">4</string>
+    <string name="btnUndo">Undo</string>
+    <string name="btnCrop">Crop</string>
+    <string name="btnBack">Back</string>
+</resources>

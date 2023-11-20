@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="81dp">
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/colorLight"
+        app:itemTextColor="@color/colorLight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/navigation" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView5"
+        android:layout_width="368dp"
+        android:layout_height="172dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView6">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
+
+            <Button
+                android:id="@+id/btnSaveCalculation"
+                android:layout_width="@dimen/btn_long_width"
+                android:layout_height="@dimen/btn_long_height"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/btnSaveCalculation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFatRangeLo" />
+
+            <TextView
+                android:id="@+id/tvCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="@string/tvZero"
+                app:layout_constraintStart_toEndOf="@+id/tvCaloriesTitle"
+                app:layout_constraintTop_toTopOf="@+id/tvCaloriesTitle" />
+
+            <TextView
+                android:id="@+id/tvCaloriesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/carview_margin_start"
+                android:layout_marginTop="16dp"
+                android:text="@string/tvCaloriesTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCarboRangeHi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:text="@string/tvZero"
+                app:layout_constraintStart_toEndOf="@+id/tvCarboRangeLo"
+                app:layout_constraintTop_toTopOf="@+id/tvCarboRangeLo" />
+
+            <TextView
+                android:id="@+id/tvCarboRangeLo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/tvZero"
+                app:layout_constraintStart_toStartOf="@+id/tvCalories"
+                app:layout_constraintTop_toBottomOf="@+id/tvCalories" />
+
+            <TextView
+                android:id="@+id/tvCarboTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/tvCarboTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvCaloriesTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvCaloriesTitle" />
+
+            <TextView
+                android:id="@+id/tvProteinTitle"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/tvProteinTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvCarboTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvCarboTitle" />
+
+            <TextView
+                android:id="@+id/tvProteinRangeHi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tvZero"
+                app:layout_constraintStart_toStartOf="@+id/tvCarboRangeHi"
+                app:layout_constraintTop_toTopOf="@+id/tvProteinRangeLo" />
+
+            <TextView
+                android:id="@+id/tvProteinRangeLo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/tvZero"
+                app:layout_constraintStart_toStartOf="@+id/tvCarboRangeLo"
+                app:layout_constraintTop_toBottomOf="@+id/tvCarboRangeLo" />
+
+            <TextView
+                android:id="@+id/tvFatRangeLo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/tvZero"
+                app:layout_constraintStart_toStartOf="@+id/tvProteinRangeLo"
+                app:layout_constraintTop_toBottomOf="@+id/tvProteinRangeLo" />
+
+            <TextView
+                android:id="@+id/tvFatRangeHi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tvZero"
+                app:layout_constraintStart_toStartOf="@+id/tvProteinRangeHi"
+                app:layout_constraintTop_toTopOf="@+id/tvFatRangeLo" />
+
+            <TextView
+                android:id="@+id/tvFatTitle"
+                android:layout_width="@dimen/tv_calculator_title"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/tvFatTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvProteinTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvProteinTitle" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView6"
+        android:layout_width="368dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/login_long_height"
+                android:gravity="center"
+                android:text="Diet Choice"
+                app:layout_constraintStart_toStartOf="@+id/tvPal"
+                app:layout_constraintTop_toBottomOf="@+id/tvPal" />
+
+            <TextView
+                android:id="@+id/tvTargetDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/login_long_height"
+                android:gravity="center"
+                android:text="@string/tvTargetDuration"
+                app:layout_constraintStart_toStartOf="@+id/tvWeightTarget"
+                app:layout_constraintTop_toBottomOf="@+id/tvWeightTarget" />
+
+            <Button
+                android:id="@+id/btnCalculate"
+                android:layout_width="@dimen/btn_long_width"
+                android:layout_height="@dimen/btn_long_height"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/btnCalculate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spDiet" />
+
+            <TextView
+                android:id="@+id/tvWeightTarget"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/login_long_height"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/tvWeightTarget"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spPal"
+                android:layout_width="@dimen/login_short"
+                android:layout_height="@dimen/sp_calculator_height"
+                android:entries="@array/spPal"
+                android:prompt="@string/spPal_prompt"
+                android:spinnerMode="dialog"
+                app:layout_constraintStart_toStartOf="@+id/etTargetDuration"
+                app:layout_constraintTop_toTopOf="@+id/tvPal" />
+
+            <EditText
+                android:id="@+id/etTargetWeight"
+                android:layout_width="@dimen/login_short"
+                android:layout_height="@dimen/login_long_height"
+                android:layout_marginStart="32dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                app:layout_constraintStart_toEndOf="@+id/tvWeightTarget"
+                app:layout_constraintTop_toTopOf="@+id/tvWeightTarget" />
+
+            <EditText
+                android:id="@+id/etTargetDuration"
+                android:layout_width="@dimen/login_short"
+                android:layout_height="@dimen/login_long_height"
+                android:ems="10"
+                android:inputType="number"
+                app:layout_constraintStart_toStartOf="@+id/etTargetWeight"
+                app:layout_constraintTop_toTopOf="@+id/tvTargetDuration" />
+
+            <Spinner
+                android:id="@+id/spDiet"
+                android:layout_width="@dimen/login_short"
+                android:layout_height="@dimen/sp_calculator_height"
+                android:entries="@array/spDiet"
+                android:spinnerMode="dialog"
+                app:layout_constraintStart_toStartOf="@+id/spPal"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/tvPal"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/login_long_height"
+                android:gravity="center"
+                android:text="@string/tvPal"
+                app:layout_constraintStart_toStartOf="@+id/tvTargetDuration"
+                app:layout_constraintTop_toBottomOf="@+id/tvTargetDuration" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

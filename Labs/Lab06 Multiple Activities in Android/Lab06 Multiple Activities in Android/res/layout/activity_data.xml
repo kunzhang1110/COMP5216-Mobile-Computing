@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/label_years"
+        android:text="@string/label_years"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/label_years"
+        android:layout_alignLeft="@+id/data_rate"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ten"
+            android:text="@string/ten"
+            android:checked="true" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fifteen"
+            android:text="@string/fifteen"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/thirty"
+            android:checked="true"
+            android:text="@string/thirty"/>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/label_amount"
+        android:layout_below="@+id/label_years"
+        android:layout_marginTop="50dp"
+        android:text="@string/label_amount"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/data_amount"
+        android:layout_alignBottom="@+id/label_amount"
+        android:layout_alignLeft="@+id/data_rate"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/label_amount"
+        android:text="@string/amountDecimal"
+        android:inputType="numberDecimal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/label_rate"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/label_amount"
+        android:text="@string/label_rate"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/data_rate"
+        android:layout_alignBottom="@+id/label_rate"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/label_rate"
+        android:layout_marginLeft="10dp"
+        android:text="@string/rateDecimal"
+        android:inputType="numberDecimal"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/data_rate"
+        android:layout_marginTop="50dp"
+        android:onClick="goBack"
+        android:text="@string/done"
+        android:id="@+id/button" />
+
+</RelativeLayout>

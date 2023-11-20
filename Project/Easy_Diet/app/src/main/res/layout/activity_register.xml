@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.RegisterActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/login_icon_height"
+        android:layout_height="@dimen/login_icon_height"
+        android:layout_alignStart="@+id/imageView6"
+        android:layout_alignTop="@+id/edUserName"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="5dp"
+
+        android:layout_marginEnd="-13dp"
+        app:srcCompat="@drawable/ic_account" />
+
+    <EditText
+        android:id="@+id/edName"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_below="@+id/register_instruct"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/register_row_spacing"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <EditText
+        android:id="@+id/edUserName"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_below="@+id/edName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/register_row_spacing"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="46dp" />
+
+    <EditText
+        android:id="@+id/edPassword"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_below="@+id/edUserName"
+        android:layout_alignStart="@+id/edName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/register_row_spacing"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+
+    <Spinner
+        android:id="@+id/spGender"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/login_long_height"
+
+
+        android:layout_below="@+id/edWeight"
+        android:layout_alignStart="@+id/edWeight"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
+        android:entries="@array/spGender" />
+
+    <EditText
+        android:id="@+id/edAge"
+        android:layout_width="@dimen/login_short"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_below="@+id/edPassword"
+        android:layout_alignStart="@+id/edPassword"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
+        android:ems="10"
+        android:hint="Age"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="138dp" />
+
+    <EditText
+        android:id="@+id/edHeight"
+        android:layout_width="@dimen/login_short"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_below="@+id/edAge"
+        android:layout_alignStart="@+id/edAge"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
+        android:ems="10"
+        android:hint="Height (cm)"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="184dp" />
+
+
+    <Button
+        android:id="@+id/btRegister"
+        android:layout_width="@dimen/btn_long_width"
+        android:layout_height="@dimen/btn_long_height"
+        android:layout_below="@+id/spGender"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="65dp"
+        android:text="Register"
+        android:textColor="@color/colorLight"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="276dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/login_icon_height"
+        android:layout_height="@dimen/login_icon_height"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignTop="@+id/edPassword"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_marginStart="0dp"
+        app:srcCompat="@drawable/ic_password" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="@dimen/login_icon_height"
+        android:layout_height="@dimen/login_icon_height"
+        android:layout_below="@+id/register_instruct"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="@dimen/register_row_spacing"
+        app:srcCompat="@drawable/ic_name" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="@dimen/login_icon_height"
+        android:layout_height="@dimen/login_icon_height"
+        android:layout_alignStart="@+id/imageView9"
+        android:layout_alignTop="@+id/spGender"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-1dp"
+        app:srcCompat="@drawable/ic_gender" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="@dimen/login_icon_height"
+        android:layout_height="@dimen/login_icon_height"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignTop="@+id/edHeight"
+        app:srcCompat="@drawable/ic_height" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="@dimen/login_icon_height"
+        android:layout_height="@dimen/login_icon_height"
+        android:layout_alignStart="@+id/imageView6"
+        android:layout_alignTop="@+id/edAge"
+        app:srcCompat="@drawable/ic_age" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="@dimen/login_icon_height"
+        android:layout_height="@dimen/login_icon_height"
+        android:layout_alignStart="@+id/imageView7"
+        android:layout_alignTop="@+id/edWeight"
+        android:layout_marginStart="0dp"
+        app:srcCompat="@drawable/ic_weight" />
+
+    <EditText
+        android:id="@+id/edWeight"
+        android:layout_width="@dimen/login_short"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_below="@+id/edHeight"
+        android:layout_alignStart="@+id/edHeight"
+
+        android:layout_marginTop="@dimen/register_row_spacing"
+        android:ems="10"
+        android:hint="Weight (kg)"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="230dp" />
+
+    <TextView
+        android:id="@+id/register_instruct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:text="* All Fields are required." />
+
+</RelativeLayout>

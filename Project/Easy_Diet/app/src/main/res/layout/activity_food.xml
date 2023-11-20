@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".food.FoodActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/tvEatenCalories"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_marginStart="8dp"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="150dp"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_marginTop="48dp"
+        android:text="Calories in your food"
+        app:layout_constraintStart_toStartOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/calculateButton" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:text="Type in the food you have eaten or plan to eat today."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="@dimen/login_short"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_marginTop="8dp"
+        android:text="Calorie Remaining"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/inputDaily"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="@dimen/login_long_height"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="A bacon and two eggs"
+        app:layout_constraintStart_toStartOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/text">
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/calculateButton"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="Get Calories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputDaily" />
+
+    <TextView
+        android:id="@+id/calorieAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/login_long_height"
+        android:text="0"
+        app:layout_constraintStart_toStartOf="@+id/tvEatenCalories"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+
+    <Button
+        android:id="@+id/testing"
+        android:layout_width="@dimen/login_long"
+        android:layout_height="@dimen/btn_long_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="Check Food Recommendation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/colorLight"
+        app:itemTextColor="@color/colorLight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/navigation" />
+
+</android.support.constraint.ConstraintLayout>

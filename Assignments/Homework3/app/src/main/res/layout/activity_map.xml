@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapFragment"
+    tools:layout_editor_absoluteY="25dp">
+
+    <Button
+        android:id="@+id/btnMusic"
+        android:layout_width="108dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="96dp"
+        android:drawableLeft="@android:drawable/ic_media_play"
+        android:drawablePadding="3dp"
+        android:text="Music"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="30dp"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSaveRun"
+        android:layout_width="108dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="96dp"
+        android:drawableLeft="@android:drawable/ic_menu_save"
+        android:drawablePadding="3dp"
+        android:text="@string/btnSaveRun"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnMusic"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <ToggleButton
+        android:id="@+id/btnTogStartPause"
+        android:layout_width="108dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="ToggleButton"
+        android:textOff="@string/btnTogStart"
+        android:textOn="@string/btnTogPause"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvShowDistance"
+        android:layout_width="100dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvShowDuration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map" />
+
+    <TextView
+        android:id="@+id/tvShowDuration"
+        android:layout_width="100dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvMapShowSpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvShowDistance" />
+
+    <TextView
+        android:id="@+id/tvMapShowSpeed"
+        android:layout_width="100dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvMapShowPace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvShowDuration" />
+
+    <TextView
+        android:id="@+id/tvMapShowPace"
+        android:layout_width="140dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSaveRun"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMapShowSpeed" />
+
+    <TextView
+        android:id="@+id/textDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:text="Distance"
+        app:layout_constraintBottom_toTopOf="@+id/textDuration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <TextView
+        android:id="@+id/textDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginStart="64dp"
+        android:text="Duration"
+        app:layout_constraintBottom_toTopOf="@+id/textSpeed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDistance" />
+
+    <TextView
+        android:id="@+id/textSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginStart="64dp"
+        android:text="Speed"
+        app:layout_constraintBottom_toTopOf="@+id/textPace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDuration" />
+
+    <TextView
+        android:id="@+id/textPace"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="8dp"
+        android:text="Pace"
+        app:layout_constraintBottom_toTopOf="@+id/btnMusic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSpeed" />
+
+</android.support.constraint.ConstraintLayout>
